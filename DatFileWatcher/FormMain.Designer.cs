@@ -48,6 +48,7 @@
             this.fileSystemWatcher.EnableRaisingEvents = true;
             this.fileSystemWatcher.Filter = "*.dat";
             this.fileSystemWatcher.SynchronizingObject = this;
+            this.fileSystemWatcher.Changed += new System.IO.FileSystemEventHandler(this.fileSystemWatcher_Changed);
             this.fileSystemWatcher.Created += new System.IO.FileSystemEventHandler(this.fileSystemWatcher_Created);
             // 
             // checkBoxStartup

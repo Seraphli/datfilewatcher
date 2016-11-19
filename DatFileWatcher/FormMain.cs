@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.IO;
+using System.Threading;
 
 namespace DatFileWatcher
 {
@@ -40,9 +41,55 @@ namespace DatFileWatcher
             checkBoxAutoClean.Checked = _FormSetting.AutoClean;
         }
 
+        List<string> CreatedFileList = new List<string>();
         private void fileSystemWatcher_Created(object sender, FileSystemEventArgs e)
         {
-            File.Copy(e.FullPath, e.FullPath + ".bak");
+            CreatedFileList.Add(e.FullPath);
+        }
+
+        private void fileSystemWatcher_Changed(object sender, FileSystemEventArgs e)
+        {
+            if (CreatedFileList.Contains(e.FullPath))
+            {
+                CreateBackupFile(e);
+            }
+        }
+
+        // Force one instance
+        bool AlreadyWorking = false;
+        void CreateBackupFile(FileSystemEventArgs e)
+        {
+            if (!AlreadyWorking)
+            {
+                AlreadyWorking = true;
+                string _bakFileName = e.FullPath + ".bak";
+                while (IsFileInUse(e.FullPath))
+                    Thread.Sleep(200);
+                if (!File.Exists(_bakFileName))
+                    File.Copy(e.FullPath, e.FullPath + ".bak");
+                AlreadyWorking = false;
+            }
+        }
+
+        public bool IsFileInUse(string fileName)
+        {
+            bool inUse = true;
+            FileStream fs = null;
+            try
+            {
+                fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.None);
+                inUse = false;
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                if (fs != null)
+                    fs.Close();
+            }
+            return inUse;//true表示正在使用,false没有使用  
         }
 
         private void checkBoxStartup_CheckedChanged(object sender, EventArgs e)
@@ -125,6 +172,8 @@ namespace DatFileWatcher
             _FormSetting.Minimize = checkBoxMinimize.Checked;
             _FormSetting.AutoClean = checkBoxAutoClean.Checked;
         }
+
+
     }
 
     public class FormSetting

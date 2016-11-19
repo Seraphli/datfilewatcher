@@ -2,7 +2,7 @@
 本工具用来备份微信的Data文件,防止在撤回后被微信删除.
 
 # 下载地址
-[百度盘](http://pan.baidu.com/s/1dF7f6BB) 密码: jsca
+[百度盘](http://pan.baidu.com/s/1c2EBb3M) 密码: p7mq
 
 # 简要说明
 1. 下载软件

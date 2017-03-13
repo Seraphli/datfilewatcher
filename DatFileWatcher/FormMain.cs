@@ -52,7 +52,7 @@ namespace DatFileWatcher
                 string path = Application.ExecutablePath;
                 RegistryKey rk = Registry.LocalMachine;
                 RegistryKey rk2 = rk.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run");
-                rk2.SetValue("DatFileWatcher", path);
+                rk2.SetValue("DatFileWatcher", "\"" + path + "\"");
                 rk2.Close();
                 rk.Close();
             }

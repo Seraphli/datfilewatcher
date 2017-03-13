@@ -12,7 +12,7 @@
 
 # 简要说明
 1. 下载软件
-2. 解压到微信Data文件夹内,文件夹的路径为 C:\Users\*你的用户名*\Documents\WeChat Files\*微信用户名*\Data
+2. 解压到微信Data文件夹内,文件夹的路径为 C:\Users\\*你的用户名*\Documents\WeChat Files\\*微信用户名*\Data
 3. 运行软件
 
 # 功能介绍

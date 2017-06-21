@@ -8,7 +8,7 @@
 所以例如微信生成了一个名为 a.dat 的文件,那么备份文件将会是 a.dat.bak .
 
 # 下载地址
-[百度盘](http://pan.baidu.com/s/1c2EBb3M) 密码: p7mq
+[百度盘](http://pan.baidu.com/s/1eRTvwKq) 密码: 2qsx
 
 # 简要说明
 1. 下载软件

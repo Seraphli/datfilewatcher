@@ -221,10 +221,12 @@ namespace DatFileWatcher
         ILog ConfigLog4Net()
         {
             ///Appender2  
-            log4net.Appender.FileAppender appender = new log4net.Appender.FileAppender();
+            log4net.Appender.RollingFileAppender appender = new log4net.Appender.RollingFileAppender();
 
             appender.AppendToFile = true;
             appender.File = "DatFileWatcher.log";
+            appender.MaxFileSize = 5 * 1024 * 1024;
+            appender.MaxSizeRollBackups = 2;
             appender.ImmediateFlush = true;
             appender.LockingModel = new log4net.Appender.FileAppender.MinimalLock();
 
